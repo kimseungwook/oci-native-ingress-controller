@@ -11,8 +11,8 @@
 
 controller_class: oci.oraclecloud.com/native-ingress-controller
 lease_lock_name: oci-native-ingress-controller
-compartment_id: ""
-subnet_id: ""
+compartment_id: "ocid1.compartment.oc1..aaaaaaaah7ygqjvbptfjcuwct2pzrwumc4mrgijtf557zdyjfjm6cjh6cddq"
+subnet_id: "ocid1.subnet.oc1.phx.aaaaaaaabhyaaemonaxva2zoezl3yn2gdff6gutdovs3comudrr6xrtgiuya"
 
 deploymentNamespace : native-ingress-controller-system
 replicaCount: 1
