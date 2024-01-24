@@ -11,9 +11,9 @@
 
 controller_class: oci.oraclecloud.com/native-ingress-controller
 lease_lock_name: oci-native-ingress-controller
-compartment_id: ""
-subnet_id: ""
-cluster_id: ""
+compartment_id: "ocid1.compartment.oc1..aaaaaaaarkjohae3subv4hypcru62jpjqsvu5c27tpvtx4wbztqt4mhjqasa"
+subnet_id: "ocid1.subnet.oc1.ap-seoul-1.aaaaaaaa4uq4rxm56r5rud35w2h2bm4z5inaa3odojxwxtcjetdusnou5isa"
+cluster_id: "ocid1.cluster.oc1.ap-seoul-1.aaaaaaaa3hpq2rm6b6thoyuuvafmeqn5xumwhi5sb6rfllft3c7yvdnufn3q"
 
 deploymentNamespace : native-ingress-controller-system
 replicaCount: 1
@@ -67,7 +67,15 @@ nodeSelector: {}
 
 tolerations: []
 
-affinity: {}
+affinity: #{}
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: "service"
+          operator: In
+          values:
+          - "ingress-controller"
 
 # priorityClassName specifies the PriorityClass to indicate the importance of controller pods
 # ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
@@ -96,7 +104,7 @@ webhookBindPort: 9443
 
 # Supported auths - instance(default), user
 authType: instance
-authSecretName: oci-config
+# authSecretName: oci-native-ingress-controller-tls
 
 # objectSelector for webhook
 objectSelector:
